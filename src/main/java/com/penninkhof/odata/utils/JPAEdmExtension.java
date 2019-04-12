@@ -118,7 +118,6 @@ public class JPAEdmExtension implements org.apache.olingo.odata2.jpa.processor.a
 							.setName("Collection")
 							.setChildElements(new ArrayList<AnnotationElement>() {{
 								for (final Field field : getFieldsOfEntitySet()) {
-									if (field.getAnnotation(SAPLineItem.class) != null) {
 										add(new AnnotationElement()
 											.setName("Record")
 											.setAttributes(
@@ -151,7 +150,7 @@ public class JPAEdmExtension implements org.apache.olingo.odata2.jpa.processor.a
 													return null;
 												}}));
 											}}));
-								}
+
 							}}
 							private Field[] getFieldsOfEntitySet() {
 								for (EntityType entityType : edmSchema.getEntityTypes()) {

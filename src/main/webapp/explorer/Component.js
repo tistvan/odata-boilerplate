@@ -1,11 +1,11 @@
 sap.ui.define([
 	"sap/ui/core/UIComponent",
 	"sap/ui/Device",
-	"com/penninkhof/odata/model/models"
+	"./model/models"
 ], function(UIComponent, Device, models) {
 	"use strict";
 
-	return UIComponent.extend("com.penninkhof.odata.Component", {
+	return UIComponent.extend("de.blogspot.openui5.odata.explorer.Component", {
 
 		metadata: {
 			manifest: "json"
@@ -23,10 +23,8 @@ sap.ui.define([
 			// set the device model
 			this.setModel(models.createDeviceModel(), "device");
 
-            // create the views based on the url/hash
-            this.getRouter().initialize();
-		
+			// create the views based on the url/hash
+			this.getRouter().initialize();
 		}
 	});
-
 });

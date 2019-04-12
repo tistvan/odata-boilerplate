@@ -1,0 +1,434 @@
+﻿<div style="position: relative; height: 100%;">
+    <div class="snap-drawers">
+        <div class="snap-drawer snap-drawer-left">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12" id="settings">
+
+
+                        <tree-view source-data="metadata" on-node-click="onTreeNodeClick(nodeText)"></tree-view>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="snap-drawer snap-drawer-right">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!--                        <header>
+                            <h2>Meta-Data</h2>
+                        </header>
+
+                        <hr />-->
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="content" class="snap-content">
+
+        <header id="site-header" class="row">
+
+            <div class="col-md-5">
+
+                <button ng-show="metadata" ng-click="showMetaData()" class="btn navigation-btn pull-left">Metadata</button>
+
+                <!--<button id="settings-btn" ng-click="showSettings()" class="btn navigation-btn pull-left">Settings</button>-->
+
+                <a id="odata-source-show-modal-btn" data-toggle="modal" href="/#/#modal-url-settings" class="btn navigation-btn pull-left">OData Source URL</a>
+
+
+            </div>
+
+            <div class="col-md-2">
+                <img id="site-logo" class="img-responsive" src="resources/app-logo.png" />
+            </div>
+
+            <div class="col-md-5">
+                <a data-toggle="modal" href="/#/#modal-about" class="btn navigation-btn pull-right">About</a>
+
+                <button ng-click="showHelp()" class="btn navigation-btn pull-right">Help</button>
+
+
+
+
+            </div>
+
+        </header>
+
+        <div class="container">
+            <div class="row text-muted">
+                <div class="col-md-12">
+                    <label><small>Current URL:</small></label>
+                    <a href="{{currentUrl}}/{{intellisenseQuery}}" target="_blank"><strong>{{currentUrl}}/{{intellisenseQuery}}</strong></a> &nbsp;
+                </div>
+            </div>
+
+            <form role="form" class="row" style="margin-bottom: 0px; margin-top: 20px;">
+
+                <div class="form-group col-md-10 " style="position: relative;">
+                    <intellisense on-submit="onIntellisenseSubmit(query)" metadata="metadata" model="intellisenseQuery" />
+                </div>
+
+                <div class="col-md-2">
+                    <button type="button" class="form-control operation-btn btn-success" ng-click="onIntellisenseSubmit();"><i class="icon-paste"></i>Show Data</button>
+                </div>
+
+            </form>
+
+            <hr />
+
+            <div class="row">
+                <!--ng-show="(jsonData || xmlData)"-->
+                <div class="col-md-12">
+
+
+
+                    <section class="nice-panel">
+
+                        <header style="overflow: auto;">
+                            <i class="icon-table"></i>
+                            <h3>Query-Results - {{dataViewType}}</h3>
+
+
+                            <div class="btn-group pull-right" data-toggle="buttons">
+                                <label class="btn btn-default" style="padding: 2px 10px" ng-click="dataViewType='xml'" ng-class="{'active':(dataViewType=='xml')}">
+                                    XML
+                                </label>
+
+                                <label class="btn btn-default" style="padding: 2px 10px" ng-click="dataViewType='json'" ng-class="{'active':(dataViewType=='json')}">
+                                    JSON
+                                </label>
+                                <label class="btn btn-default" style="padding: 2px 10px" ng-click="dataViewType='table'" ng-class="{'active':(dataViewType=='table')}">
+                                    Table
+                                </label>
+                            </div>
+
+
+
+
+                        </header>
+
+                        <div style="max-height: 500px; overflow-y: scroll;">
+
+                            <div ng-show="(dataViewType == 'json')">
+                                <div json-view model="jsonData"></div>
+                            </div>
+
+                            <div class="gridStyle" ng-show="(dataViewType == 'table')" ng-grid="gridOptions"></div>
+
+
+                            <section ng-show="(dataViewType == 'xml')">
+
+                                <div xml-view model="xmlData"></div>
+
+                            </section>
+                        </div>
+
+                    </section>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <section class="nice-panel">
+
+                        <header>
+                            <i class="icon-sitemap"></i>
+                            <h3>Metadata Graph</h3>
+                        </header>
+
+                        <div style="position: relative">
+                            <!--<div id="hide-it"></div>-->
+                            <div graph-view source-data="metadata"></div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+        <footer id="site-footer">
+
+            <div class="sponsors">
+                <a href="http://odatatools.org">
+                    <img style="max-width: 120px;" src="resources/odatatools-logo.png" /></a>
+                <a href="http://e4d.co.il">
+                    <img src="resources/e4d-logo.png" /></a>
+                <a href="http://tsofen.org">
+                    <img src="resources/tsofen-logo.png" /></a>
+
+
+            </div>
+
+            <div>
+                Project maintained by ODataTools Team ● <a href="http://hasanaboshally.github.io/OData/">Github</a> ● <a href="http://twitter.com/OData/">Twitter</a>
+                | 
+                2013 ©  All rights reserved
+              
+            </div>
+
+        </footer>
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modal-url-settings" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">OData Source URL</h4>
+            </div>
+            <div class="modal-body">
+
+                <input style="font-size: 120%; font-family: monospace; font-weight: bold; color: #4679bd; width: 100%; padding: 5px; border: 1px solid #e5e5e5" id="new-url-input" type="text" placeholder="url.." ng-model="newOdataUrl" />
+
+                <hr />
+
+                <section class="nice-panel">
+                    <header>
+                        <i class="icon-list"></i>
+                        <h3>History</h3>
+                    </header>
+                    <div>
+                        <ul class="list-unstyled odata-links">
+
+                            <li ng-repeat="link in historyLinks" style="position: relative;">
+
+                                <button ng-click="removeHistoryLink(link);" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                                <!--ng-class="{'active':isSelectedLink(link)}"-->
+                                <div class="alert-dismissable" ng-click="setNewOdataUrl(link)">
+                                    <span>{{link}}</span>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="nice-panel">
+                    <header>
+                        <i class="icon-rocket"></i>
+                        <h3>Sample URLs</h3>
+                    </header>
+                    <div>
+                        <ul class="list-unstyled odata-links">
+
+                            <li ng-repeat="link in sampleLinks" style="position: relative;">
+
+                                <div class="alert-dismissable" ng-click="setNewOdataUrl(link)">
+                                    <span>{{link}}</span>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </section>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="change-url-btn" type="button" class="btn btn-success" data-dismiss="modal" ng-click="changeDataUrl(newOdataUrl)" style="padding-left: 50px; padding-right: 50px;">Start</button>
+            </div>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modal-about" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!--        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Modal title</h4>
+        </div>-->
+            <div class="modal-body">
+                <img style="display: block; width: 50%; margin: 20px auto;" src="resources/app-color-logo.png" />
+
+                <hr />
+
+                <p><a href="http://www.odata.org/" target="_blank">The Open Data Protocol (OData)</a> is a Web protocol for querying and updating data that provides a way to unlock your data and free it from silos that exist in applications today (<a href="http://www.odata.org/introduction/" target="_blank">more</a>).</p>
+
+
+                <p>
+                    <strong>ODataViewer</strong> is an online tool for helping developers query OData URLs and see the results.
+                    The tool was built to be pluggable, so developers can develop more and more plugins.
+                    Currently, the tool supports the following plugins:
+                </p>
+
+                <ul>
+                    <li>Query auto-completion based on the provided URL.</li>
+                    <li>Displaying the meta-data as an entities-graph (with connections).</li>
+                    <li>Displaying the meta-data as a hierarchical tree.</li>
+                    <li>Displaying the queried data as table (supports associations navigation).</li>
+                    <li>Displaying the queried data as XML.</li>
+                    <li>Displaying the queried data as JSON.</li>
+
+                </ul>
+
+                <p>
+                    The tool was developed as the graduation project of The Hybrid-Apps development course (Tsofen13) by <a href="http://tsofen.org/" target="_blank">Tsofen</a>, mentored by <a href="http://e4d.co.il/">E4D</a> And its part of the <a href="http://odatatools.org/">ODataTools</a> open-source project.
+                </p>
+
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4">
+                        <a href="https://github.com/ODataTools">
+                            <img style="display: block; width: 100%; margin: 0px auto;" src="resources/on-github.png" />
+                        </a>
+                    </div>
+
+                    <!--                    <div class="col-md-4 col-md-offset-4">
+
+                        <a href="https://odata.org">
+                            <img style="display: block; width: 100%; margin: 20px auto;" src="resources/odata-logo.png" />
+                        </a>
+                    </div>-->
+                </div>
+
+
+
+
+                <hr />
+
+                <!--                <section class="mentors">
+
+                    <ul class="members-list list-unstyled container">
+                        <li class="row">
+
+                            <div class="col-md-3">
+                                <img class="img-responsive" src="resources/images/eyal.jpg" />
+                                <a class="linked-in" href="http://www.linkedin.com/profile/view?id=18109570" target="_blank"><i class="icon-linkedin-sign"></i>LinkedIn</a>
+                                
+                            </div>
+                            <div class="col-md-9">
+                                <label>Eyal Vardi (Mentor)</label>
+                                <br />
+                                <p>
+                                    Eyal has a <a href="http://dataservicestool.codeplex.com/">windows based application for viewing OData</a>, and he came up with the idea of making a web-based application for helping developers using OData.<br />Eyal mentored the project and helped the team with several technical issues.
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </section>-->
+
+                <section class="team">
+                    <header class="row">
+                        Team
+                    </header>
+
+                    <ul class="members-list list-unstyled container">
+                        <li class="member row" ng-repeat="member in team">
+
+                            <div class="col-md-4">
+                                <img class="img-responsive" ng-src="{{member.photoUrl}}" />
+
+
+                            </div>
+                            <div class="col-md-8">
+                                <label><a href="{{member.linkedin}}" target="_blank"><i class="icon-linkedin-sign"></i>{{member.name}}</a></label>
+
+                                <p ng-bind-html=" member.description">
+                                </p>
+
+                                <!--<a ng-show="member.linkedin" class="linked-in" href="{{member.linkedin}}" target="_blank"><i class="icon-linkedin-sign"></i>LinkedIn</a>-->
+
+                            </div>
+
+
+                        </li>
+                    </ul>
+                </section>
+
+                <hr />
+
+                <section class="mentors container">
+                    <header class="row">
+                        Mentors
+                    </header>
+                    <div class="row">
+                        <div ng-repeat="member in mentors" class="col-md-6">
+                            <div class="row">
+                                <div class="member">
+                                    <img class="img-responsive" ng-src="{{member.photoUrl}}" />
+                                    <label><a href="{{member.linkedin}}" target="_blank"><i class="icon-linkedin-sign"></i>{{member.name}}</a></label>
+
+
+                                    <!--<a ng-show="member.linkedin" class="linked-in" href="{{member.linkedin}}" target="_blank"><i class="icon-linkedin-sign"></i>LinkedIn</a>-->
+
+
+                                    <hr />
+
+                                    <p ng-bind-html=" member.description">
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+
+                <hr />
+
+
+                <section class="sponsors">
+                    <header>
+                        Sponsors
+                    </header>
+                    <a href="http://odatatools.org">
+                        <img style="max-width: 120px;" src="resources/odatatools-logo.png" /></a>
+                    <a href="http://e4d.co.il">
+                        <img src="resources/e4d-logo.png" /></a>
+                    <a href="http://tsofen.org">
+                        <img src="resources/tsofen-logo.png" /></a>
+
+
+                </section>
+
+                <hr />
+
+                <button type="button" class="btn btn-default btn-block" data-dismiss="modal">Close</button>
+
+            </div>
+            <!--        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>-->
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

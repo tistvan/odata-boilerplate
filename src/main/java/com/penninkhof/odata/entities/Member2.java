@@ -12,6 +12,8 @@ public class Member2 {
     private String lastName;
 
 	private String asdf;
+	private String asdf2;
+	private String asdf3;
 
     public Member2() {}
 
@@ -59,5 +61,21 @@ public class Member2 {
 
 	public void setAsdf(String asdf) {
 		this.asdf = asdf;
+	}
+
+	public String getAsdf2() {
+		return asdf2;
+	}
+
+	public void setAsdf2(String asdf2) {
+		this.asdf2 = asdf2;
+	}
+
+	public String getAsdf3() {
+		return asdf3;
+	}
+
+	public void setAsdf3(String asdf3) {
+		this.asdf3 = asdf3;
 	}
 }

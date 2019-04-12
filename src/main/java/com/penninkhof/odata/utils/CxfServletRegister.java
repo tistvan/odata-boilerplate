@@ -20,4 +20,14 @@ public class CxfServletRegister {
 		odataServletRegistrationBean.setInitParameters(initParameters);
 		return odataServletRegistrationBean;
 	}
+
+
+	@Bean
+	public ServletRegistrationBean getSwaggerJsonServletRegistrationBean() {
+		ServletRegistrationBean odataServletRegistrationBean = new ServletRegistrationBean(new OdataToSwaggerJsonServlet("/odata.svc/$metadata"), "/swagger.json");
+		Map<String, String> initParameters = new HashMap<String, String>();
+		odataServletRegistrationBean.setInitParameters(initParameters);
+		return odataServletRegistrationBean;
+	}
+
 }

@@ -1,25 +1,16 @@
 package com.penninkhof.odata.entities;
 
-import com.penninkhof.odata.annotations.SAPLineItem;
-import com.penninkhof.odata.annotations.Sap;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
 public class Member2 {
 
 	@Id
 	private int id;
-	@SAPLineItem
     private String firstName;
-	@Sap(filterable=true, sortable=true)
-	@SAPLineItem
     private String lastName;
 
-	@Sap(filterable=true, sortable=true)
-	@SAPLineItem
 	private String asdf;
 
     public Member2() {}

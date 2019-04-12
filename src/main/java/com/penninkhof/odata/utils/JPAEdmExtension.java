@@ -1,28 +1,15 @@
 package com.penninkhof.odata.utils;
 
-import java.io.InputStream;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Proxy;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.ResourceBundle;
-
-import org.apache.olingo.odata2.api.edm.provider.AnnotationAttribute;
-import org.apache.olingo.odata2.api.edm.provider.AnnotationElement;
-import org.apache.olingo.odata2.api.edm.provider.EntityContainer;
-import org.apache.olingo.odata2.api.edm.provider.EntitySet;
-import org.apache.olingo.odata2.api.edm.provider.EntityType;
-import org.apache.olingo.odata2.api.edm.provider.Property;
-import org.apache.olingo.odata2.api.edm.provider.Schema;
+import org.apache.olingo.odata2.api.edm.provider.*;
 import org.apache.olingo.odata2.jpa.processor.api.model.JPAEdmSchemaView;
 import org.apache.olingo.odata2.jpa.processor.core.model.JPAEdmMappingImpl;
 
-import com.penninkhof.odata.annotations.SAPLineItem;
-import com.penninkhof.odata.annotations.Sap;
+import java.io.InputStream;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.ResourceBundle;
 
 public class JPAEdmExtension implements org.apache.olingo.odata2.jpa.processor.api.model.JPAEdmExtension {
 
@@ -63,7 +50,7 @@ public class JPAEdmExtension implements org.apache.olingo.odata2.jpa.processor.a
 	@SuppressWarnings("unchecked")
 	private Collection<AnnotationAttribute> getSapPropertyAnnotations(EntityType entityType, Property property) {
 		List<AnnotationAttribute> result = new ArrayList<AnnotationAttribute>();
-		for (Field field : ((JPAEdmMappingImpl)entityType.getMapping()).getJPAType().getDeclaredFields()) {
+		/*for (Field field : ((JPAEdmMappingImpl)entityType.getMapping()).getJPAType().getDeclaredFields()) {
 			if (field.getName().equals(((JPAEdmMappingImpl) property.getMapping()).getInternalName())) {
 				if (field.getAnnotation(Sap.class) != null) {
 					InvocationHandler handler = Proxy.getInvocationHandler(field.getAnnotation(Sap.class));
@@ -89,7 +76,28 @@ public class JPAEdmExtension implements org.apache.olingo.odata2.jpa.processor.a
 					}
 				}
 			}
-		}
+		}*/
+
+		result.add(new AnnotationAttribute()
+				.setNamespace(SAP_NAMESPACE)
+				.setPrefix(SAP_PREFIX)
+				.setName("sortable")
+				.setText("true"));
+		result.add(new AnnotationAttribute()
+				.setNamespace(SAP_NAMESPACE)
+				.setPrefix(SAP_PREFIX)
+				.setName("filterable")
+				.setText("true"));
+		result.add(new AnnotationAttribute()
+				.setNamespace(SAP_NAMESPACE)
+				.setPrefix(SAP_PREFIX)
+				.setName("creatable")
+				.setText("true"));
+		result.add(new AnnotationAttribute()
+				.setNamespace(SAP_NAMESPACE)
+				.setPrefix(SAP_PREFIX)
+				.setName("updatable")
+				.setText("true"));
 		return result;
 	}
 	

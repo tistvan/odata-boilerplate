@@ -4,19 +4,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.penninkhof.odata.annotations.SAPLineItem;
-import com.penninkhof.odata.annotations.Sap;
-
 @Entity
 @Table(name="members")
 public class Member {
 
 	@Id
 	private int id;
-	@SAPLineItem
     private String firstName;
-	@Sap(filterable=true, sortable=true)
-	@SAPLineItem
     private String lastName;
 
     public Member() {}

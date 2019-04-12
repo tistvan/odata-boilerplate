@@ -1,60 +1,60 @@
 <edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" Version="1.0">
-<edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="1.0">
-<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="Model">
-<EntityType Name="Member">
-<Key>
-<PropertyRef Name="Id"/>
-</Key>
-<Property xmlns:sap="http://www.sap.com/Protocols/SAPData" Name="FirstName" Type="Edm.String" sap:label="First Name"/>
-<Property Name="Id" Type="Edm.Int32" Nullable="false"/>
-<Property xmlns:sap="http://www.sap.com/Protocols/SAPData" Name="LastName" Type="Edm.String" sap:label="Last Name" sap:filterable="true" sap:updatable="false" sap:sortable="true" sap:creatable="false"/>
-</EntityType>
-<EntityType Name="Member2">
-<Key>
-<PropertyRef Name="Id"/>
-</Key>
-<Property xmlns:sap="http://www.sap.com/Protocols/SAPData" Name="Asdf" Type="Edm.String" sap:filterable="true" sap:updatable="false" sap:sortable="true" sap:creatable="false"/>
-<Property Name="FirstName" Type="Edm.String"/>
-<Property Name="Id" Type="Edm.Int32" Nullable="false"/>
-<Property xmlns:sap="http://www.sap.com/Protocols/SAPData" Name="LastName" Type="Edm.String" sap:filterable="true" sap:updatable="false" sap:sortable="true" sap:creatable="false"/>
-</EntityType>
-<EntityContainer Name="ModelContainer" m:IsDefaultEntityContainer="true">
-<EntitySet Name="Members" EntityType="Model.Member"/>
-<EntitySet Name="Member2s" EntityType="Model.Member2"/>
-</EntityContainer>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="Model.Member">
-<Annotation Term="com.sap.vocabularies.UI.v1.LineItem">
-<Collection>
-<Record Type="com.sap.vocabularies.UI.v1.DataField">
-<PropertyValue Path="Id" Property="Value"/>
-</Record>
-<Record Type="com.sap.vocabularies.UI.v1.DataField">
-<PropertyValue Path="FirstName" Property="Value"/>
-</Record>
-<Record Type="com.sap.vocabularies.UI.v1.DataField">
-<PropertyValue Path="LastName" Property="Value"/>
-</Record>
-</Collection>
-</Annotation>
-</Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="Model.Member2">
-<Annotation Term="com.sap.vocabularies.UI.v1.LineItem">
-<Collection>
-<Record Type="com.sap.vocabularies.UI.v1.DataField">
-<PropertyValue Path="Id" Property="Value"/>
-</Record>
-<Record Type="com.sap.vocabularies.UI.v1.DataField">
-<PropertyValue Path="FirstName" Property="Value"/>
-</Record>
-<Record Type="com.sap.vocabularies.UI.v1.DataField">
-<PropertyValue Path="LastName" Property="Value"/>
-</Record>
-<Record Type="com.sap.vocabularies.UI.v1.DataField">
-<PropertyValue Path="Asdf" Property="Value"/>
-</Record>
-</Collection>
-</Annotation>
-</Annotations>
-</Schema>
-</edmx:DataServices>
+    <edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="1.0">
+        <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="Model">
+            <EntityType Name="Member2">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property xmlns:sap="http://www.sap.com/Protocols/SAPData" Name="Asdf" Type="Edm.String" sap:sortable="true" sap:filterable="true" sap:creatable="true" sap:updatable="true"/>
+                <Property xmlns:sap="http://www.sap.com/Protocols/SAPData" Name="FirstName" Type="Edm.String" sap:sortable="true" sap:filterable="true" sap:creatable="true" sap:updatable="true"/>
+                <Property xmlns:sap="http://www.sap.com/Protocols/SAPData" Name="Id" Type="Edm.Int32" Nullable="false" sap:sortable="true" sap:filterable="true" sap:creatable="true" sap:updatable="true"/>
+                <Property xmlns:sap="http://www.sap.com/Protocols/SAPData" Name="LastName" Type="Edm.String" sap:sortable="true" sap:filterable="true" sap:creatable="true" sap:updatable="true"/>
+            </EntityType>
+            <EntityType Name="Member">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property xmlns:sap="http://www.sap.com/Protocols/SAPData" Name="FirstName" Type="Edm.String" sap:label="First Name" sap:sortable="true" sap:filterable="true" sap:creatable="true" sap:updatable="true"/>
+                <Property xmlns:sap="http://www.sap.com/Protocols/SAPData" Name="Id" Type="Edm.Int32" Nullable="false" sap:sortable="true" sap:filterable="true" sap:creatable="true" sap:updatable="true"/>
+                <Property xmlns:sap="http://www.sap.com/Protocols/SAPData" Name="LastName" Type="Edm.String" sap:label="Last Name" sap:sortable="true" sap:filterable="true" sap:creatable="true" sap:updatable="true"/>
+            </EntityType>
+            <EntityContainer Name="ModelContainer" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="Member2s" EntityType="Model.Member2"/>
+                <EntitySet Name="Members" EntityType="Model.Member"/>
+            </EntityContainer>
+            <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="Model.Member2">
+                <Annotation Term="com.sap.vocabularies.UI.v1.LineItem">
+                    <Collection>
+                        <Record Type="com.sap.vocabularies.UI.v1.DataField">
+                            <PropertyValue Path="Id" Property="Value"/>
+                        </Record>
+                        <Record Type="com.sap.vocabularies.UI.v1.DataField">
+                            <PropertyValue Path="FirstName" Property="Value"/>
+                        </Record>
+                        <Record Type="com.sap.vocabularies.UI.v1.DataField">
+                            <PropertyValue Path="LastName" Property="Value"/>
+                        </Record>
+                        <Record Type="com.sap.vocabularies.UI.v1.DataField">
+                            <PropertyValue Path="Asdf" Property="Value"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="Model.Member">
+                <Annotation Term="com.sap.vocabularies.UI.v1.LineItem">
+                    <Collection>
+                        <Record Type="com.sap.vocabularies.UI.v1.DataField">
+                            <PropertyValue Path="Id" Property="Value"/>
+                        </Record>
+                        <Record Type="com.sap.vocabularies.UI.v1.DataField">
+                            <PropertyValue Path="FirstName" Property="Value"/>
+                        </Record>
+                        <Record Type="com.sap.vocabularies.UI.v1.DataField">
+                            <PropertyValue Path="LastName" Property="Value"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
 </edmx:Edmx>
